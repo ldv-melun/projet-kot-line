@@ -256,22 +256,19 @@ another double quote.  For example:
 
 === BOM
 
-Parceque les fichiers CSV sont des fichiers "texte" (par opposition au fichier "binaire"), il est nécessaire de savoir
-que ce type de fichier peut intégrer une méta-donnée, nommée `BOM` dans les tous premiers octets.
+Parceque les fichiers CSV sont des fichiers "texte" (par opposition aux fichierx "binaire"), il est nécessaire de savoir que ce type de fichier peut intégrer une méta-donnée, nommée `BOM` dans les tout premiers octets.
 
-*BOM* (de l'anglais _Byte Order Mark_, parfois traduit en français par _indicateur d'ordre des octets_) est une donnée qui indique l'utilisation d'un
-encodage unicode ainsi que l'ordre des octets. Cette donnée est située au début de certains fichiers texte.
+*BOM* (de l'anglais _Byte Order Mark_, parfois traduit en français par _indicateur d'ordre des octets_) est une donnée qui indique l'utilisation d'un encodage unicode ainsi que l'ordre des octets. Cette donnée est située au début de certains fichiers texte.
 
 La donnée du BOM, lorsqu'elle est correctement traitée, est transparente pour les utilisateurs lambda,
-dans le cas contraire où la séquence de BOM est traitée comme du texte, elle apparait
-souvent sous cette forme : `ï»¿` et peut alors perturber certains traitements.
+dans le cas contraire où la séquence de BOM est traitée comme du texte, elle apparait souvent sous cette forme : `ï»¿` et peut alors perturber certains traitements.
 
 Voir plus loin : https://fr.wikipedia.org/wiki/Indicateur_d%27ordre_des_octets
 
 Les 2 fonctions de cette donnée optionnelle, placée en tête des fichiers texte renseigne :
 
 * Unicode : UTF-8, UTF-16, UTF-32, ...
-* Ordre des octets : big ou little indian. Concerne la représentation mémoire de groupes d'octets : les
+* Ordre des octets : **big** ou **little indian**. Concerne la représentation mémoire de groupes d'octets : les
 représentations de poids fort sont-elles en premier ou en dernier ? (voir : https://fr.wikipedia.org/wiki/Boutisme)
 
 [cols="1,2", options="header"]

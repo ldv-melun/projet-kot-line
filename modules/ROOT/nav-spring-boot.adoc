@@ -1,2 +1,0 @@
-* Projet Spring Boot Kotlin
-** xref:mission-etl-csv.adoc[Projet Kot-Line]

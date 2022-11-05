@@ -1,7 +1,7 @@
 :title: Projet Kot-Line
 :description: Cours et TP autour de Spring Boot
 :keywords: Spring Boot Kotlin langage programmation web
-:authors: Olivier Capuozzo
+:authors: Olivier Capuozzo & Co
 :email:
 :revnumber: v1.0
 :revdate: 05/11/2022

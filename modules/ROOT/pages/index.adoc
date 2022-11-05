@@ -5,6 +5,7 @@
 :email:
 :revnumber: v1.0
 :revdate: 05/11/2022
+:imagesdir: images
 
 // Activation de la numérotaion des section :
 :sectnums:
@@ -176,7 +177,6 @@ image:csv-exemple.png[csv exemple wikipedia]
 => Attention : la première ligne désignant les "entêtes de colonne" est optionnelle.
 
 => Format CSV en détails : https://tools.ietf.org/html/rfc4180
-
 
 TIP: Les fichiers CSV sont, par défaut, ouverts par des logiciels tableur (Calc, Excel...).
 C'est une source de confusion des utilisateurs lambda, confondant `CSV` avec ... Excel.

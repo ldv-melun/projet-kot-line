@@ -24,7 +24,8 @@ endif::[]
 :toc: left
 :toclevels: 5
 :toc-title: Sommaire
-= Kot-Line
+
+= Projet: https://ldv-melun.github.io/projet-kot-line/[Kot-Line]
 
 == Contexte
 
@@ -256,7 +257,7 @@ another double quote.  For example:
 
 === BOM
 
-Parceque les fichiers CSV sont des fichiers "texte" (par opposition aux fichierx "binaire"), il est nécessaire de savoir que ce type de fichier peut intégrer une méta-donnée, nommée `BOM` dans les tout premiers octets.
+Parceque les fichiers CSV sont des fichiers "texte" (par opposition aux fichiers dits "binaire"), il est nécessaire de savoir que ce type de fichier peut intégrer une méta-donnée, nommée `BOM` dans les tout premiers octets.
 
 *BOM* (de l'anglais _Byte Order Mark_, parfois traduit en français par _indicateur d'ordre des octets_) est une donnée qui indique l'utilisation d'un encodage unicode ainsi que l'ordre des octets. Cette donnée est située au début de certains fichiers texte.
 

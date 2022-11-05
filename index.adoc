@@ -52,7 +52,7 @@ Votre travail préalable consiste à étudier
 * comment lire un fichier CSV et en exploiter ses données
 * comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé `service`, de même niveau d'arborescence que `controller`, puis injecter une instance de cette classe selon les besoins)
 * comment insérer les données provenant d'un fichier CSV dans une base de données de tests (MySql)
-* quelles seront les données statistiques retenues et comment comptez-vous les représenter (modèles graphiques) au gestionnaire (en retour de sa requête HTTP)
+* quelles seront les données statistiques retenues et comment comptez-vous les représenter au gestionnaire, en retour de sa requête HTTP. Modèles graphiques à générer côté client via un composant javascript à déterminer par la team.
 
 Un travail en équipe est attendu. Vous fournirez rapidement le nom de la team ainsi que la liste de ses membres.
 

@@ -37,8 +37,7 @@ Afin d'exploiter ces fichiers partenaires, Kot-Line souhaite disposer d'un outil
 
 L'entreprise Kot-Line envisage de se lancer dans des produits en liens avec l'automobile.
 
-Le département R&D souhaite disposer d'un modèle de données avec les entités `Client`, `Vehicule` (année, modèle) et `Marque` (nom de la marque du véhicule).
-
+Le département R&D vous demande de concevoir un premier prototype d'application.
 
 == Première partie : Analyse
 
@@ -53,7 +52,7 @@ Votre travail préalable consiste à étudier
 * comment lire un fichier CSV et en exploiter ses données
 * comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé `service`, de même niveau d'arborescence que `controller`, puis injecter une instance de cette classe selon les besoins)
 * comment insérer les données provenant d'un fichier CSV dans une base de données de tests (MySql)
-* quelles seront les données statistiques (et modèles graphiques) à présenter au gestionnaire
+* quelles seront les données statistiques retenues et comment comptez-vous les représenter (modèles graphiques) au gestionnaire (en retour de sa requête HTTP)
 
 Un travail en équipe est attendu. Vous fournirez rapidement le nom de la team ainsi que la liste de ses membres.
 
@@ -89,27 +88,40 @@ IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-
 == Annexes
 
 
-=== Conseil méthodologique de votre chef de projet
+=== Les données à traiter
 
-==== Masse des données à traiter
+La société nous communique des exemples de fichiers reçus. Ces fichiers sont :
 
-La société nous communique des exemples de fichiers reçus. Ces fichiers sont :  link:french-data.csv[`french-client.csv`] (~3000 clients) et link:german-data.csv[`german-client.csv`] (~2000 clients). Ces fichiers ont même structure (même type et nombre de colonnes).
+* link:french-data.csv[`french-client.csv`] (~3000 clients) et
 
-Les fichiers reçus contiennent plus d'information que nécessaire. Le fichier résultant de la fusion sera composé d'un sous-ensemble des colonnes existantes (appelé *projection*) et une *sélection* de lignes sera effectuée (sélection des personnes majeures uniquement). La demande du client est détaillée plus loin dans ce document.
+* link:german-data.csv[`german-client.csv`] (~2000 clients).
 
-La masse d’information à traiter ( plusieurs milliers de clients par fichier CSV) n’aide pas à la mise au point au cours de la première phase de développement.
+Ces fichiers ont même structure (même type et nombre de colonnes).
 
-Il est alors souhaitable de constituer des données de tests afin de faciliter, *dans un premier temps*, la mise au point du code, les tests.
+Ces fichiers contiennent plus d'information que nécessaire.
 
-Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers `small-french-client.csv` et `small-german-client.csv`. Ces fichiers sont à créer (dans le cas général, ces fichiers n'ont pas le même nombre de lignes)
+Les propriétés souhaitées pour un client sont : `genre`, `titre`, `nom`, `prénom`, `email`, `date de naissance`, `num tel`, `CCType`, `CCNumber`, `CVV2`, `CCExpires`, `adresse physique` (plusieurs champs dans le CSV), `taille`, `poids`, `véhicule`, `coordonnées GPS`.
 
+==== Décomposition de la donnée véhicule
 
-==== Choix des données
+Le département R&D a identifié, pour son client Kot Line, un modèle de données avec les entités `Client`, `Vehicule` (année, modèle) et `Marque` (nom de la marque du véhicule).
 
-Les propriétés souhaitées pour un client sont : genre, titre, nom, prénom, email, date de naissance, num tel, CCType, CCNumber, CVV2, CCExpires, adresse physique (plusieurs champs dans le CSV), taille, poids, véhicule, coordonnées GPS.
+Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.
+
+Exemple : La donnée `"2000 Ford Galaxy"` sera décomposée en deux lignes dans la base de données, comme par exemple :
+
+* `Table Vehicule`
++
+`Ligne(id=123,  idMarque=3,  model="galaxy", annee=2000)`
+
+* `Table Marque`
++
+`Ligne(id=3, nom="Ford")`
+
+**Vous concevrez le domaine métier en conséquence (classes entité)**
 
 [[trois-contraintes]]
-==== 3 Contraintes de sélection des données client
+=== Contraintes de sélection des données client
 
 . Seules les personnes *majeures* à la date de l'importation du fichier devront être sélectionnées.
 
@@ -124,22 +136,13 @@ qui remet en cause l'intégrité des données sur certains clients (dans le syst
 
 Les clients positifs aux contraintes décrites ci-dessus seront *traités à part des autres*.
 
-==== Décomposition de la donnée véhicule
+=== Masse des données à traiter
 
-Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.
+La masse d’information à traiter ( plusieurs milliers de clients par fichier CSV) n’aide pas à la mise au point au cours de la première phase de développement.
 
-Exemple : La donnée `"2000 Ford Galaxy"` sera décomposée en deux lignes dans la base de données, comme par exemple :
+Il est alors souhaitable de constituer des données de tests afin de faciliter, *dans un premier temps*, la mise au point du code, les tests.
 
-* `Table Vehicule`
-+
-`Ligne(id=123,  idMarque=3,  model="galaxy", annee=2000)`
-
-* `Table Marque`
-+
-`Ligne(id=3, nom="Ford")`
-
-Vous concevrez le domaine métier en conséquence (classes entité)
-
+Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers `small-french-client.csv` et `small-german-client.csv`. Ces fichiers sont à créer (dans le cas général, ces fichiers n'ont pas le même nombre de lignes)
 
 === Gestion du upload
 
@@ -306,9 +309,12 @@ python -c "import sys; print(sys.byteorder)"
 
 === Choisir un composant d'exploitation CSV
 
-*Exemple de critère*
+*Exemple de critères*
 
 - Charge mémoire
-
+- Développement actif
+- Bien référencé
+- Dépendances minimales
+- Licence open source
 
 TIP: Selon la taille des fichiers à manipuler, le critère de charge mémoire peut être déterminant.

@@ -1,0 +1,37 @@
+:title: Projet Kot-Line
+:description: Cours et TP autour de Spring Boot
+:keywords: Spring Boot Kotlin langage programmation web
+:authors: Olivier Capuozzo et confrères
+:email:
+:revnumber: v1.1
+:revdate: 05/11/2022
+:imagesdir: images
+:imagesoutdir: images
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:imagesdir: .
+endif::[]
+
+// Activation de la numérotaion des section :
+:sectnums:
+:tabsize: 2
+
+:toc: left
+:toclevels: 5
+:toc-title: Sommaire
+
+= Projet "Kot-Line"
+
+Ressource à vocation pédagogique (initiation à la programmation web)
+
+image::https://i.creativecommons.org/l/by/4.0/88x31.png[link=https://creativecommons.org/licenses/by/4.0/]
+
+
+Merci de vous rendre ici -> https://ldv-melun.github.io/projet-kot-line/[Kot-Line]  (render github pages)
+
+

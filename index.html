@@ -457,23 +457,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_livraison">4. Livraison</a></li>
 <li><a href="#_annexes">5. Annexes</a>
 <ul class="sectlevel2">
-<li><a href="#_conseil_méthodologique_de_votre_chef_de_projet">5.1. Conseil méthodologique de votre chef de projet</a>
+<li><a href="#_les_données_à_traiter">5.1. Les données à traiter</a>
 <ul class="sectlevel3">
-<li><a href="#_masse_des_données_à_traiter">5.1.1. Masse des données à traiter</a></li>
-<li><a href="#_choix_des_données">5.1.2. Choix des données</a></li>
-<li><a href="#trois-contraintes">5.1.3. 3 Contraintes de sélection des données client</a></li>
-<li><a href="#_décomposition_de_la_donnée_véhicule">5.1.4. Décomposition de la donnée véhicule</a></li>
+<li><a href="#_décomposition_de_la_donnée_véhicule">5.1.1. Décomposition de la donnée véhicule</a></li>
 </ul>
 </li>
-<li><a href="#_gestion_du_upload">5.2. Gestion du upload</a></li>
-<li><a href="#_evil_user_stories">5.3. Evil User Stories</a></li>
-<li><a href="#_format_csv">5.4. Format CSV</a>
+<li><a href="#trois-contraintes">5.2. Contraintes de sélection des données client</a></li>
+<li><a href="#_masse_des_données_à_traiter">5.3. Masse des données à traiter</a></li>
+<li><a href="#_gestion_du_upload">5.4. Gestion du upload</a></li>
+<li><a href="#_evil_user_stories">5.5. Evil User Stories</a></li>
+<li><a href="#_format_csv">5.6. Format CSV</a>
 <ul class="sectlevel3">
-<li><a href="#_extrait_de_la_rfc_4180">5.4.1. Extrait de la RFC 4180</a></li>
+<li><a href="#_extrait_de_la_rfc_4180">5.6.1. Extrait de la RFC 4180</a></li>
 </ul>
 </li>
-<li><a href="#_bom">5.5. BOM</a></li>
-<li><a href="#_choisir_un_composant_dexploitation_csv">5.6. Choisir un composant d&#8217;exploitation CSV</a></li>
+<li><a href="#_bom">5.7. BOM</a></li>
+<li><a href="#_choisir_un_composant_dexploitation_csv">5.8. Choisir un composant d&#8217;exploitation CSV</a></li>
 </ul>
 </li>
 </ul>
@@ -496,7 +495,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>L&#8217;entreprise Kot-Line envisage de se lancer dans des produits en liens avec l&#8217;automobile.</p>
 </div>
 <div class="paragraph">
-<p>Le département R&amp;D souhaite disposer d&#8217;un modèle de données avec les entités <code>Client</code>, <code>Vehicule</code> (année, modèle) et <code>Marque</code> (nom de la marque du véhicule).</p>
+<p>Le département R&amp;D vous demande de concevoir un premier prototype d&#8217;application.</p>
 </div>
 </div>
 </div>
@@ -530,7 +529,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>comment insérer les données provenant d&#8217;un fichier CSV dans une base de données de tests (MySql)</p>
 </li>
 <li>
-<p>quelles seront les données statistiques (et modèles graphiques) à présenter au gestionnaire</p>
+<p>quelles seront les données statistiques retenues et comment comptez-vous les représenter (modèles graphiques) au gestionnaire (en retour de sa requête HTTP)</p>
 </li>
 </ul>
 </div>
@@ -574,7 +573,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Durant la phase de conception, d&#8217;implémentation et de tests, n&#8217;hésitez à revoir votre analyse si vous le jugez nécessaire.</p>
 </div>
 <div class="paragraph">
-<p>Vous mettrez au point une série de tests unitaires qui vérifient que vos algorithmes de filtrations des données fonctionnent comme prévu, voir <a href="#trois-contraintes">3 Contraintes de sélection des données client</a>.</p>
+<p>Vous mettrez au point une série de tests unitaires qui vérifient que vos algorithmes de filtrations des données fonctionnent comme prévu, voir <a href="#trois-contraintes">Contraintes de sélection des données client</a>.</p>
 </div>
 </div>
 </div>
@@ -611,33 +610,63 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 <h2 id="_annexes">5. Annexes</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_conseil_méthodologique_de_votre_chef_de_projet">5.1. Conseil méthodologique de votre chef de projet</h3>
-<div class="sect3">
-<h4 id="_masse_des_données_à_traiter">5.1.1. Masse des données à traiter</h4>
+<h3 id="_les_données_à_traiter">5.1. Les données à traiter</h3>
 <div class="paragraph">
-<p>La société nous communique des exemples de fichiers reçus. Ces fichiers sont :  <a href="french-data.csv"><code>french-client.csv</code></a> (~3000 clients) et <a href="german-data.csv"><code>german-client.csv</code></a> (~2000 clients). Ces fichiers ont même structure (même type et nombre de colonnes).</p>
+<p>La société nous communique des exemples de fichiers reçus. Ces fichiers sont :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="french-data.csv"><code>french-client.csv</code></a> (~3000 clients) et</p>
+</li>
+<li>
+<p><a href="german-data.csv"><code>german-client.csv</code></a> (~2000 clients).</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Les fichiers reçus contiennent plus d&#8217;information que nécessaire. Le fichier résultant de la fusion sera composé d&#8217;un sous-ensemble des colonnes existantes (appelé <strong>projection</strong>) et une <strong>sélection</strong> de lignes sera effectuée (sélection des personnes majeures uniquement). La demande du client est détaillée plus loin dans ce document.</p>
+<p>Ces fichiers ont même structure (même type et nombre de colonnes).</p>
 </div>
 <div class="paragraph">
-<p>La masse d’information à traiter ( plusieurs milliers de clients par fichier CSV) n’aide pas à la mise au point au cours de la première phase de développement.</p>
+<p>Ces fichiers contiennent plus d&#8217;information que nécessaire.</p>
 </div>
 <div class="paragraph">
-<p>Il est alors souhaitable de constituer des données de tests afin de faciliter, <strong>dans un premier temps</strong>, la mise au point du code, les tests.</p>
-</div>
-<div class="paragraph">
-<p>Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers <code>small-french-client.csv</code> et <code>small-german-client.csv</code>. Ces fichiers sont à créer (dans le cas général, ces fichiers n&#8217;ont pas le même nombre de lignes)</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_choix_des_données">5.1.2. Choix des données</h4>
-<div class="paragraph">
-<p>Les propriétés souhaitées pour un client sont : genre, titre, nom, prénom, email, date de naissance, num tel, CCType, CCNumber, CVV2, CCExpires, adresse physique (plusieurs champs dans le CSV), taille, poids, véhicule, coordonnées GPS.</p>
-</div>
+<p>Les propriétés souhaitées pour un client sont : <code>genre</code>, <code>titre</code>, <code>nom</code>, <code>prénom</code>, <code>email</code>, <code>date de naissance</code>, <code>num tel</code>, <code>CCType</code>, <code>CCNumber</code>, <code>CVV2</code>, <code>CCExpires</code>, <code>adresse physique</code> (plusieurs champs dans le CSV), <code>taille</code>, <code>poids</code>, <code>véhicule</code>, <code>coordonnées GPS</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="trois-contraintes">5.1.3. 3 Contraintes de sélection des données client</h4>
+<h4 id="_décomposition_de_la_donnée_véhicule">5.1.1. Décomposition de la donnée véhicule</h4>
+<div class="paragraph">
+<p>Le département R&amp;D a identifié, pour son client Kot Line, un modèle de données avec les entités <code>Client</code>, <code>Vehicule</code> (année, modèle) et <code>Marque</code> (nom de la marque du véhicule).</p>
+</div>
+<div class="paragraph">
+<p>Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.</p>
+</div>
+<div class="paragraph">
+<p>Exemple : La donnée <code>"2000 Ford Galaxy"</code> sera décomposée en deux lignes dans la base de données, comme par exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Table Vehicule</code></p>
+<div class="paragraph">
+<p><code>Ligne(id=123,  idMarque=3,  model="galaxy", annee=2000)</code></p>
+</div>
+</li>
+<li>
+<p><code>Table Marque</code></p>
+<div class="paragraph">
+<p><code>Ligne(id=3, nom="Ford")</code></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Vous concevrez le domaine métier en conséquence (classes entité)</strong></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="trois-contraintes">5.2. Contraintes de sélection des données client</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -662,37 +691,20 @@ qui remet en cause l&#8217;intégrité des données sur certains clients (dans l
 <p>Les clients positifs aux contraintes décrites ci-dessus seront <strong>traités à part des autres</strong>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_décomposition_de_la_donnée_véhicule">5.1.4. Décomposition de la donnée véhicule</h4>
+<div class="sect2">
+<h3 id="_masse_des_données_à_traiter">5.3. Masse des données à traiter</h3>
 <div class="paragraph">
-<p>Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.</p>
-</div>
-<div class="paragraph">
-<p>Exemple : La donnée <code>"2000 Ford Galaxy"</code> sera décomposée en deux lignes dans la base de données, comme par exemple :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Table Vehicule</code></p>
-<div class="paragraph">
-<p><code>Ligne(id=123,  idMarque=3,  model="galaxy", annee=2000)</code></p>
-</div>
-</li>
-<li>
-<p><code>Table Marque</code></p>
-<div class="paragraph">
-<p><code>Ligne(id=3, nom="Ford")</code></p>
-</div>
-</li>
-</ul>
+<p>La masse d’information à traiter ( plusieurs milliers de clients par fichier CSV) n’aide pas à la mise au point au cours de la première phase de développement.</p>
 </div>
 <div class="paragraph">
-<p>Vous concevrez le domaine métier en conséquence (classes entité)</p>
+<p>Il est alors souhaitable de constituer des données de tests afin de faciliter, <strong>dans un premier temps</strong>, la mise au point du code, les tests.</p>
 </div>
+<div class="paragraph">
+<p>Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers <code>small-french-client.csv</code> et <code>small-german-client.csv</code>. Ces fichiers sont à créer (dans le cas général, ces fichiers n&#8217;ont pas le même nombre de lignes)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gestion_du_upload">5.2. Gestion du upload</h3>
+<h3 id="_gestion_du_upload">5.4. Gestion du upload</h3>
 <div class="paragraph">
 <p>Les fichiers à traiter sont transmis par l&#8217;utilisateur gestionnaire.</p>
 </div>
@@ -707,7 +719,7 @@ qui remet en cause l&#8217;intégrité des données sur certains clients (dans l
 </div>
 </div>
 <div class="sect2">
-<h3 id="_evil_user_stories">5.3. Evil User Stories</h3>
+<h3 id="_evil_user_stories">5.5. Evil User Stories</h3>
 <div class="paragraph">
 <p><strong>On attend au moins deux <em>Evil User Stories</em> et leur contre-mesure</strong> : Prise en compte de scénarios à risque, formulés sous la forme simple d&#8217;un <em>Evil User Stories</em> et leur <strong>contre-mesure</strong> (réponse technique).  Voir exemple ici :  <a href="https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/" class="bare">https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/</a></p>
 </div>
@@ -726,7 +738,7 @@ Quelques pistes conceptuelles : <em>Niveau de confiance des données d’entrée
 </div>
 </div>
 <div class="sect2">
-<h3 id="_format_csv">5.4. Format CSV</h3>
+<h3 id="_format_csv">5.6. Format CSV</h3>
 <div class="paragraph">
 <p>Il existe plusieurs solutions pour que 2 systèmes puissent communiquer des données,
 indépendamment de leur implémentation interne spécifique (structure, encodage). La plupart du
@@ -779,7 +791,7 @@ C&#8217;est une source de confusion des utilisateurs lambda, confondant <code>CS
 </table>
 </div>
 <div class="sect3">
-<h4 id="_extrait_de_la_rfc_4180">5.4.1. Extrait de la RFC 4180</h4>
+<h4 id="_extrait_de_la_rfc_4180">5.6.1. Extrait de la RFC 4180</h4>
 <div class="paragraph">
 <p>(<a href="https://tools.ietf.org/html/rfc4180" class="bare">https://tools.ietf.org/html/rfc4180</a> )</p>
 </div>
@@ -876,7 +888,7 @@ another double quote.  For example:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bom">5.5. BOM</h3>
+<h3 id="_bom">5.7. BOM</h3>
 <div class="paragraph">
 <p>Parceque les fichiers CSV sont des fichiers "texte" (par opposition aux fichiers dits "binaire"), il est nécessaire de savoir que ce type de fichier peut intégrer une méta-donnée, nommée <code>BOM</code> dans les tout premiers octets.</p>
 </div>
@@ -968,14 +980,26 @@ L&#8217;acceptabilité de BOM dépend des protocoles utilisés. À des fins d&#8
 </div>
 </div>
 <div class="sect2">
-<h3 id="_choisir_un_composant_dexploitation_csv">5.6. Choisir un composant d&#8217;exploitation CSV</h3>
+<h3 id="_choisir_un_composant_dexploitation_csv">5.8. Choisir un composant d&#8217;exploitation CSV</h3>
 <div class="paragraph">
-<p><strong>Exemple de critère</strong></p>
+<p><strong>Exemple de critères</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Charge mémoire</p>
+</li>
+<li>
+<p>Développement actif</p>
+</li>
+<li>
+<p>Bien référencé</p>
+</li>
+<li>
+<p>Dépendances minimales</p>
+</li>
+<li>
+<p>Licence open source</p>
 </li>
 </ul>
 </div>
@@ -998,7 +1022,7 @@ Selon la taille des fichiers à manipuler, le critère de charge mémoire peut �
 <div id="footer">
 <div id="footer-text">
 Version v1.1<br>
-Last updated 2022-11-05 17:36:55 +0100
+Last updated 2022-11-05 18:14:45 +0100
 </div>
 </div>
 </body>

@@ -6,6 +6,16 @@
 :revnumber: v1.0
 :revdate: 05/11/2022
 :imagesdir: images
+:imagesoutdir: images
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:imagesdir: .
+endif::[]
 
 // Activation de la numérotaion des section :
 :sectnums:

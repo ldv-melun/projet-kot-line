@@ -29,7 +29,7 @@ endif::[]
 
 == Contexte
 
-La société de service dans laquelle vous travaillez a comme client l'entreprise Kot-Line, créatrice de ligne de vêtements.
+La société de service SO-DEV dans laquelle vous travaillez a comme client l'entreprise Kot-Line, créatrice de ligne de vêtements.
 
 La société Kot-Line reçoit de la part de ses partenaires, tous les mois, 2 fichiers clients au format https://fr.wikipedia.org/wiki/Comma-separated_values[`CSV`].
 
@@ -41,22 +41,27 @@ Le département R&D vous demande de concevoir un premier prototype d'application
 
 == Première partie : Analyse
 
-Votre mission consiste donc à concevoir une application web permettant à un gestionnaire de télécharger un fichier client CSV (upload), afin de peupler une base de données et retourner à l'utilisateur des éléments statistiques résultants de l'opération engagée par l'utilisateur.
+Votre mission consiste donc à concevoir une application web, qui sera disponible dans l'intranet de l'entreprise Kot-Line.
 
-Pour cela vous définirez le modèle conceptuel du domaine (MCD) représenté par un diagramme des entités métier (des classes `entity`).
+L'application devra permettre
+
+. La consultation, par toute personne de l'entreprise, de la base de données clients.
+. La possibilité de télécharger, par un personnel _gestionnaire_, un fichier client CSV (upload), afin de peupler une base de données et retourner à l'utilisateur des éléments statistiques résultants de l'opération engagée par l'utilisateur.
+
+Pour cela vous définirez le *modèle conceptuel du domaine* (MCD) représenté par un diagramme de classes des entités métier (classes `entity`).
 
 Votre travail préalable consiste à étudier
 
-* comment réaliser les relations entre vos objets du domaine.
-* comment permettre à un utilisateur de télécharger un fichier CSV
-* comment lire un fichier CSV et en exploiter ses données
-* comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé `service`, de même niveau d'arborescence que `controller`, puis injecter une instance de cette classe selon les besoins)
-* comment insérer les données provenant d'un fichier CSV dans une base de données de tests (MySql)
-* quelles seront les données statistiques retenues et comment comptez-vous les représenter au gestionnaire, en retour de sa requête HTTP. Modèles graphiques à générer côté client via un composant javascript à déterminer par la team.
+* Comment réaliser les relations entre vos objets du domaine.
+* Comment permettre à un utilisateur de télécharger un fichier CSV
+* Comment lire un fichier CSV et en exploiter ses données
+* Comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé `service`, de même niveau d'arborescence que `controller`, puis injecter une instance de cette classe selon les besoins)
+* Comment insérer les données ainsi filtrées dans une base de données de tests (MySql)
+* Quelles seront les données statistiques retenues et comment comptez-vous les représenter au gestionnaire, en retour de sa requête HTTP. Modèles graphiques à générer côté client via un composant javascript à déterminer par la team.
 
 Un travail en équipe est attendu. Vous fournirez rapidement le nom de la team ainsi que la liste de ses membres.
 
-Votre document d'analyse (format asciidoc, puis version pdf) portera sur les points suivants :
+Votre *document d'analyse* (format asciidoc, puis version pdf) portera sur les points suivants :
 
 * Définition du domaine métier (les entités)
 * Choix (et argumentation) de la librairie logicielle vous avez retenue pour lire un document CSV, à partir de cet article : https://www.baeldung.com/kotlin/csv-files[]
@@ -134,7 +139,7 @@ Certains clients ont des incohérences de valeurs entre la taille en inch et cel
 Des doublons sur le numéro de carte de crédit se sont glissés dans les données, ce
 qui remet en cause l'intégrité des données sur certains clients (dans le système en question, une carte de crédit ne peut être partagée).
 
-Les clients positifs aux contraintes décrites ci-dessus seront *traités à part des autres*.
+Les clients positifs aux contraintes décrites ci-dessus seront *traités à part des autres* (à vous de décider comment et à défendre votre choix dnas votre document d'analyse).
 
 === Masse des données à traiter
 
@@ -159,7 +164,6 @@ Exemple de tuto sur ce thème : https://mkyong.com/spring-boot/spring-boot-file-
 
 IMPORTANT: Les _Evil US_ feront l'objet d'une *évaluation à part*, et leur dead-line est le *XXX 23h59*. +
 Quelques pistes conceptuelles : _Niveau de confiance des données d’entrée_, Stratégie de gestion de la _surface d’attaque_ (réduction, gestion des dépendances), _Défense en profondeur_ (Voir https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur), _principe du moindre privilège_, _valeurs par défaut sécurisées_ (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser...
-
 
 === Format CSV
 

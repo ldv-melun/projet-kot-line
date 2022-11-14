@@ -45,10 +45,10 @@ Votre mission consiste donc à concevoir une application web, qui sera disponibl
 
 L'application devra permettre
 
-. La consultation, par toute personne de l'entreprise, de la base de données clients.
-. La possibilité de télécharger, par un personnel _gestionnaire_, un fichier client CSV (upload), afin de peupler une base de données et retourner à l'utilisateur des éléments statistiques résultants de l'opération engagée par l'utilisateur.
+. La consultation de la base de données clients. Accessible à toute personne de l'entreprise.
+. La possibilité de télécharger un fichier client CSV (upload), afin de peupler une base de données et retourner à l'utilisateur des éléments statistiques résultants de l'opération engagée par l'utilisateur. Uniquement accessible aux _gestionnaires_. (nous aborderons la partie _habilitation_ dans les prochains jours)
 
-Pour cela vous définirez le *modèle conceptuel du domaine* (MCD) représenté par un diagramme de classes des entités métier (classes `entity`).
+Les fichiers CSV feront l'objet de traitement avant d'être exportés dans la base de données, car Kot-Line ne s'intéresse qu'à certains champs seulement. De plus, certains des clients sont en anomalie ou ont un age qui ne correspond pas aux critères de l'entreprise (voir en annexe :  <<trois-contraintes>>)
 
 Votre travail préalable consiste à étudier
 
@@ -63,7 +63,7 @@ Un travail en équipe est attendu. Vous fournirez rapidement le nom de la team a
 
 Votre *document d'analyse* (format asciidoc, puis version pdf) portera sur les points suivants :
 
-* Définition du domaine métier (les entités)
+* Définition du domaine métier représenté par un diagramme de classes des entités métier (classes `entity`).
 * Choix (et argumentation) de la librairie logicielle vous avez retenue pour lire un document CSV, à partir de cet article : https://www.baeldung.com/kotlin/csv-files[]
 * La façon dont vous comptez implémenter les 3 contraintes de sélection
 * Présentation de la stratégie retenue par votre équipe concernant la gestion des données à problème.
@@ -72,28 +72,27 @@ Votre *document d'analyse* (format asciidoc, puis version pdf) portera sur les p
 
 == Deuxième partie : Réalisation
 
-Cette phase ne peut commencer qu'après l'accord de vos professeurs sur la base de votre analyse.
+Cette phase ne peut commencer qu'après l'accord de vos professeurs sur la base de votre analyse (plusieurs analyses sont possibles, à décider au sein de chaque team)
 
 Durant la phase de conception, d'implémentation et de tests, n'hésitez à revoir votre analyse si vous le jugez nécessaire.
 
 Vous mettrez au point une série de tests unitaires qui vérifient que vos algorithmes de filtrations des données fonctionnent comme prévu, voir <<trois-contraintes>>.
 
-== Livraison
+== Consignes de livraison
 
-La date de livraison est : *XXX  - 23h59*
+La date de livraison est : *Dimanche 11 décembre 2022 - 23h59*
 
 Vous communiquerez, par un des membres du groupe - les autres en CC -, une version *pdf* de votre rapport README.
 
 Le fichier sera constitué du nom de la team.
 
-Votre rapport sera *daté*, comportera le nom de tous les collaborateurs de la team ainsi qu'un lien vers l'énoncé de la mission (ce doc) et un autre vers votre projet hébergé. Rappel, votre rapport *est* le  README de votre projet.
+Votre rapport sera *daté*, comportera le nom de tous les collaborateurs de la team ainsi qu'un lien vers l'énoncé de la mission (ce doc) et un autre vers votre projet hébergé sur un serveur git. Rappel, votre rapport *est* le README de votre projet.
 
-IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-line est le *XXX +7 23h59*.
+IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-line est le *Dimanche 18 décembre 23h59*.
 
-== Annexes
+== Annexes sur les data
 
-
-=== Les données à traiter
+=== Les fichiers CSV de tests
 
 La société nous communique des exemples de fichiers reçus. Ces fichiers sont :
 
@@ -101,19 +100,21 @@ La société nous communique des exemples de fichiers reçus. Ces fichiers sont 
 
 * link:german-data.csv[`german-client.csv`] (~2000 clients).
 
-Ces fichiers ont même structure (même type et nombre de colonnes).
+Ces fichiers ont la même structure (même type et nombre de colonnes).
 
-Ces fichiers contiennent plus d'information que nécessaire.
+=== Les données qui intéressent Kot-Line
+
+Les fichiers CSV contiennent plus d'information que nécessaire.
 
 Les propriétés souhaitées pour un client sont : `genre`, `titre`, `nom`, `prénom`, `email`, `date de naissance`, `num tel`, `CCType`, `CCNumber`, `CVV2`, `CCExpires`, `adresse physique` (plusieurs champs dans le CSV), `taille`, `poids`, `véhicule`, `coordonnées GPS`.
 
-==== Décomposition de la donnée véhicule
+==== Donnée `véhicule` à décomposer
 
 Le département R&D a identifié, pour son client Kot Line, un modèle de données avec les entités `Client`, `Vehicule` (année, modèle) et `Marque` (nom de la marque du véhicule).
 
 Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.
 
-Exemple : La donnée `"2000 Ford Galaxy"` sera décomposée en deux lignes dans la base de données, comme par exemple :
+Exemple : La donnée du fichier CSV `véhicule` : `"2000 Ford Galaxy"` sera décomposée en deux lignes dans la base de données, comme par exemple (les id sont arbitraires) :
 
 * `Table Vehicule`
 +
@@ -123,12 +124,11 @@ Exemple : La donnée `"2000 Ford Galaxy"` sera décomposée en deux lignes dans 
 +
 `Ligne(id=3, nom="Ford")`
 
-**Vous concevrez le domaine métier en conséquence (classes entité)**
 
 [[trois-contraintes]]
 === Contraintes de sélection des données client
 
-. Seules les personnes *majeures* à la date de l'importation du fichier devront être sélectionnées.
+. Seules les personnes *majeures* et n'ayant pas atteint l'âge de *88 ans* à la date de l'importation du fichier devront être sélectionnées.
 
 . Prise en compte de la *Contrainte-de-taille*.
 +
@@ -139,7 +139,7 @@ Certains clients ont des incohérences de valeurs entre la taille en inch et cel
 Des doublons sur le numéro de carte de crédit se sont glissés dans les données, ce
 qui remet en cause l'intégrité des données sur certains clients (dans le système en question, une carte de crédit ne peut être partagée).
 
-Les clients positifs aux contraintes décrites ci-dessus seront *traités à part des autres* (à vous de décider comment et à défendre votre choix dnas votre document d'analyse).
+Les clients positifs aux contraintes décrites ci-dessus seront *traités à part des autres* (à vous de décider comment et à défendre votre choix dans votre document d'analyse).
 
 === Masse des données à traiter
 
@@ -148,6 +148,14 @@ La masse d’information à traiter ( plusieurs milliers de clients par fichier 
 Il est alors souhaitable de constituer des données de tests afin de faciliter, *dans un premier temps*, la mise au point du code, les tests.
 
 Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers `small-french-client.csv` et `small-german-client.csv`. Ces fichiers sont à créer (dans le cas général, ces fichiers n'ont pas le même nombre de lignes)
+
+=== Evil User Stories
+*On attend au moins deux _Evil User Stories_ et leur contre-mesure* : Prise en compte de scénarios à risque, formulés sous la forme simple d'un _Evil User Stories_ et leur *contre-mesure* (réponse technique).  Voir exemple ici :  https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/
+
+IMPORTANT: Les _Evil US_ feront l'objet d'une *évaluation à part*, et leur dead-line est le *XXX 23h59*. +
+Quelques pistes conceptuelles : _Niveau de confiance des données d’entrée_, Stratégie de gestion de la _surface d’attaque_ (réduction, gestion des dépendances), _Défense en profondeur_ (Voir https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur), _principe du moindre privilège_, _valeurs par défaut sécurisées_ (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser...
+
+== Annexes techniques
 
 === Gestion du upload
 
@@ -158,12 +166,6 @@ Un gestionnaire est un utilisateur ayant des *droits spécifiques*.
 Votre rapport présentera vos travaux dans ce sens (compréhension de la gestion de l'upload dans le cadre d'une applications web multi-utilisateurs)
 
 Exemple de tuto sur ce thème : https://mkyong.com/spring-boot/spring-boot-file-upload-example/[]
-
-=== Evil User Stories
-*On attend au moins deux _Evil User Stories_ et leur contre-mesure* : Prise en compte de scénarios à risque, formulés sous la forme simple d'un _Evil User Stories_ et leur *contre-mesure* (réponse technique).  Voir exemple ici :  https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/
-
-IMPORTANT: Les _Evil US_ feront l'objet d'une *évaluation à part*, et leur dead-line est le *XXX 23h59*. +
-Quelques pistes conceptuelles : _Niveau de confiance des données d’entrée_, Stratégie de gestion de la _surface d’attaque_ (réduction, gestion des dépendances), _Défense en profondeur_ (Voir https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur), _principe du moindre privilège_, _valeurs par défaut sécurisées_ (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser...
 
 === Format CSV
 

@@ -454,25 +454,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_contexte">1. Contexte</a></li>
 <li><a href="#_première_partie_analyse">2. Première partie : Analyse</a></li>
 <li><a href="#_deuxième_partie_réalisation">3. Deuxième partie : Réalisation</a></li>
-<li><a href="#_livraison">4. Livraison</a></li>
-<li><a href="#_annexes">5. Annexes</a>
+<li><a href="#_consignes_de_livraison">4. Consignes de livraison</a></li>
+<li><a href="#_annexes_sur_les_data">5. Annexes sur les data</a>
 <ul class="sectlevel2">
-<li><a href="#_les_données_à_traiter">5.1. Les données à traiter</a>
+<li><a href="#_les_fichiers_csv_de_tests">5.1. Les fichiers CSV de tests</a></li>
+<li><a href="#_les_données_qui_intéressent_kot_line">5.2. Les données qui intéressent Kot-Line</a>
 <ul class="sectlevel3">
-<li><a href="#_décomposition_de_la_donnée_véhicule">5.1.1. Décomposition de la donnée véhicule</a></li>
+<li><a href="#_donnée_véhicule_à_décomposer">5.2.1. Donnée <code>véhicule</code> à décomposer</a></li>
 </ul>
 </li>
-<li><a href="#trois-contraintes">5.2. Contraintes de sélection des données client</a></li>
-<li><a href="#_masse_des_données_à_traiter">5.3. Masse des données à traiter</a></li>
-<li><a href="#_gestion_du_upload">5.4. Gestion du upload</a></li>
+<li><a href="#trois-contraintes">5.3. Contraintes de sélection des données client</a></li>
+<li><a href="#_masse_des_données_à_traiter">5.4. Masse des données à traiter</a></li>
 <li><a href="#_evil_user_stories">5.5. Evil User Stories</a></li>
-<li><a href="#_format_csv">5.6. Format CSV</a>
-<ul class="sectlevel3">
-<li><a href="#_extrait_de_la_rfc_4180">5.6.1. Extrait de la RFC 4180</a></li>
 </ul>
 </li>
-<li><a href="#_bom">5.7. BOM</a></li>
-<li><a href="#_choisir_un_composant_dexploitation_csv">5.8. Choisir un composant d&#8217;exploitation CSV</a></li>
+<li><a href="#_annexes_techniques">6. Annexes techniques</a>
+<ul class="sectlevel2">
+<li><a href="#_gestion_du_upload">6.1. Gestion du upload</a></li>
+<li><a href="#_format_csv">6.2. Format CSV</a>
+<ul class="sectlevel3">
+<li><a href="#_extrait_de_la_rfc_4180">6.2.1. Extrait de la RFC 4180</a></li>
+</ul>
+</li>
+<li><a href="#_bom">6.3. BOM</a></li>
+<li><a href="#_choisir_un_composant_dexploitation_csv">6.4. Choisir un composant d&#8217;exploitation CSV</a></li>
 </ul>
 </li>
 </ul>
@@ -483,7 +488,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_contexte">1. Contexte</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La société de service dans laquelle vous travaillez a comme client l&#8217;entreprise Kot-Line, créatrice de ligne de vêtements.</p>
+<p>La société de service SO-DEV dans laquelle vous travaillez a comme client l&#8217;entreprise Kot-Line, créatrice de ligne de vêtements.</p>
 </div>
 <div class="paragraph">
 <p>La société Kot-Line reçoit de la part de ses partenaires, tous les mois, 2 fichiers clients au format <a href="https://fr.wikipedia.org/wiki/Comma-separated_values"><code>CSV</code></a>.</p>
@@ -503,10 +508,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_première_partie_analyse">2. Première partie : Analyse</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Votre mission consiste donc à concevoir une application web permettant à un gestionnaire de télécharger un fichier client CSV (upload), afin de peupler une base de données et retourner à l&#8217;utilisateur des éléments statistiques résultants de l&#8217;opération engagée par l&#8217;utilisateur.</p>
+<p>Votre mission consiste donc à concevoir une application web, qui sera disponible dans l&#8217;intranet de l&#8217;entreprise Kot-Line.</p>
 </div>
 <div class="paragraph">
-<p>Pour cela vous définirez le modèle conceptuel du domaine (MCD) représenté par un diagramme des entités métier (des classes <code>entity</code>).</p>
+<p>L&#8217;application devra permettre</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La consultation de la base de données clients. Accessible à toute personne de l&#8217;entreprise.</p>
+</li>
+<li>
+<p>La possibilité de télécharger un fichier client CSV (upload), afin de peupler une base de données et retourner à l&#8217;utilisateur des éléments statistiques résultants de l&#8217;opération engagée par l&#8217;utilisateur. Uniquement accessible aux <em>gestionnaires</em>. (nous aborderons la partie <em>habilitation</em> dans les prochains jours)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Les fichiers CSV feront l&#8217;objet de traitement avant d&#8217;être exportés dans la base de données, car Kot-Line ne s&#8217;intéresse qu&#8217;à certains champs seulement. De plus, certains des clients sont en anomalie ou ont un age qui ne correspond pas aux critères de l&#8217;entreprise (voir en annexe :  <a href="#trois-contraintes">Contraintes de sélection des données client</a>)</p>
 </div>
 <div class="paragraph">
 <p>Votre travail préalable consiste à étudier</p>
@@ -514,22 +532,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>comment réaliser les relations entre vos objets du domaine.</p>
+<p>Comment réaliser les relations entre vos objets du domaine.</p>
 </li>
 <li>
-<p>comment permettre à un utilisateur de télécharger un fichier CSV</p>
+<p>Comment permettre à un utilisateur de télécharger un fichier CSV</p>
 </li>
 <li>
-<p>comment lire un fichier CSV et en exploiter ses données</p>
+<p>Comment lire un fichier CSV et en exploiter ses données</p>
 </li>
 <li>
-<p>comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé <code>service</code>, de même niveau d&#8217;arborescence que <code>controller</code>, puis injecter une instance de cette classe selon les besoins)</p>
+<p>Comment implémenter les contraintes (une solution classique consiste à concevoir des fonctions dans une classe à part et placer cette classe dans un dossier (package) nommé <code>service</code>, de même niveau d&#8217;arborescence que <code>controller</code>, puis injecter une instance de cette classe selon les besoins)</p>
 </li>
 <li>
-<p>comment insérer les données provenant d&#8217;un fichier CSV dans une base de données de tests (MySql)</p>
+<p>Comment insérer les données ainsi filtrées dans une base de données de tests (MySql)</p>
 </li>
 <li>
-<p>quelles seront les données statistiques retenues et comment comptez-vous les représenter au gestionnaire, en retour de sa requête HTTP. Modèles graphiques à générer côté client via un composant javascript à déterminer par la team.</p>
+<p>Quelles seront les données statistiques retenues et comment comptez-vous les représenter au gestionnaire, en retour de sa requête HTTP. Modèles graphiques à générer côté client via un composant javascript à déterminer par la team.</p>
 </li>
 </ul>
 </div>
@@ -537,12 +555,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Un travail en équipe est attendu. Vous fournirez rapidement le nom de la team ainsi que la liste de ses membres.</p>
 </div>
 <div class="paragraph">
-<p>Votre document d&#8217;analyse (format asciidoc, puis version pdf) portera sur les points suivants :</p>
+<p>Votre <strong>document d&#8217;analyse</strong> (format asciidoc, puis version pdf) portera sur les points suivants :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Définition du domaine métier (les entités)</p>
+<p>Définition du domaine métier représenté par un diagramme de classes des entités métier (classes <code>entity</code>).</p>
 </li>
 <li>
 <p>Choix (et argumentation) de la librairie logicielle vous avez retenue pour lire un document CSV, à partir de cet article : <a href="https://www.baeldung.com/kotlin/csv-files" class="bare">https://www.baeldung.com/kotlin/csv-files</a></p>
@@ -567,7 +585,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_deuxième_partie_réalisation">3. Deuxième partie : Réalisation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cette phase ne peut commencer qu&#8217;après l&#8217;accord de vos professeurs sur la base de votre analyse.</p>
+<p>Cette phase ne peut commencer qu&#8217;après l&#8217;accord de vos professeurs sur la base de votre analyse (plusieurs analyses sont possibles, à décider au sein de chaque team)</p>
 </div>
 <div class="paragraph">
 <p>Durant la phase de conception, d&#8217;implémentation et de tests, n&#8217;hésitez à revoir votre analyse si vous le jugez nécessaire.</p>
@@ -578,10 +596,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_livraison">4. Livraison</h2>
+<h2 id="_consignes_de_livraison">4. Consignes de livraison</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La date de livraison est : <strong>XXX  - 23h59</strong></p>
+<p>La date de livraison est : <strong>Dimanche 11 décembre 2022 - 23h59</strong></p>
 </div>
 <div class="paragraph">
 <p>Vous communiquerez, par un des membres du groupe - les autres en CC -, une version <strong>pdf</strong> de votre rapport README.</p>
@@ -590,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Le fichier sera constitué du nom de la team.</p>
 </div>
 <div class="paragraph">
-<p>Votre rapport sera <strong>daté</strong>, comportera le nom de tous les collaborateurs de la team ainsi qu&#8217;un lien vers l&#8217;énoncé de la mission (ce doc) et un autre vers votre projet hébergé. Rappel, votre rapport <strong>est</strong> le  README de votre projet.</p>
+<p>Votre rapport sera <strong>daté</strong>, comportera le nom de tous les collaborateurs de la team ainsi qu&#8217;un lien vers l&#8217;énoncé de la mission (ce doc) et un autre vers votre projet hébergé sur un serveur git. Rappel, votre rapport <strong>est</strong> le README de votre projet.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -599,7 +617,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Important</div>
 </td>
 <td class="content">
-Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et leur dead-line est le <strong>XXX +7 23h59</strong>.
+Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et leur dead-line est le <strong>Dimanche 18 décembre 23h59</strong>.
 </td>
 </tr>
 </table>
@@ -607,10 +625,10 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 </div>
 </div>
 <div class="sect1">
-<h2 id="_annexes">5. Annexes</h2>
+<h2 id="_annexes_sur_les_data">5. Annexes sur les data</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_les_données_à_traiter">5.1. Les données à traiter</h3>
+<h3 id="_les_fichiers_csv_de_tests">5.1. Les fichiers CSV de tests</h3>
 <div class="paragraph">
 <p>La société nous communique des exemples de fichiers reçus. Ces fichiers sont :</p>
 </div>
@@ -625,16 +643,19 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 </ul>
 </div>
 <div class="paragraph">
-<p>Ces fichiers ont même structure (même type et nombre de colonnes).</p>
+<p>Ces fichiers ont la même structure (même type et nombre de colonnes).</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_les_données_qui_intéressent_kot_line">5.2. Les données qui intéressent Kot-Line</h3>
 <div class="paragraph">
-<p>Ces fichiers contiennent plus d&#8217;information que nécessaire.</p>
+<p>Les fichiers CSV contiennent plus d&#8217;information que nécessaire.</p>
 </div>
 <div class="paragraph">
 <p>Les propriétés souhaitées pour un client sont : <code>genre</code>, <code>titre</code>, <code>nom</code>, <code>prénom</code>, <code>email</code>, <code>date de naissance</code>, <code>num tel</code>, <code>CCType</code>, <code>CCNumber</code>, <code>CVV2</code>, <code>CCExpires</code>, <code>adresse physique</code> (plusieurs champs dans le CSV), <code>taille</code>, <code>poids</code>, <code>véhicule</code>, <code>coordonnées GPS</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_décomposition_de_la_donnée_véhicule">5.1.1. Décomposition de la donnée véhicule</h4>
+<h4 id="_donnée_véhicule_à_décomposer">5.2.1. Donnée <code>véhicule</code> à décomposer</h4>
 <div class="paragraph">
 <p>Le département R&amp;D a identifié, pour son client Kot Line, un modèle de données avec les entités <code>Client</code>, <code>Vehicule</code> (année, modèle) et <code>Marque</code> (nom de la marque du véhicule).</p>
 </div>
@@ -642,7 +663,7 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 <p>Le mapping Objet-Relationnel permettra de représenter les données métier liées, dans la base de données, par des clés étrangères.</p>
 </div>
 <div class="paragraph">
-<p>Exemple : La donnée <code>"2000 Ford Galaxy"</code> sera décomposée en deux lignes dans la base de données, comme par exemple :</p>
+<p>Exemple : La donnée du fichier CSV <code>véhicule</code> : <code>"2000 Ford Galaxy"</code> sera décomposée en deux lignes dans la base de données, comme par exemple (les id sont arbitraires) :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -660,17 +681,14 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><strong>Vous concevrez le domaine métier en conséquence (classes entité)</strong></p>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="trois-contraintes">5.2. Contraintes de sélection des données client</h3>
+<h3 id="trois-contraintes">5.3. Contraintes de sélection des données client</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Seules les personnes <strong>majeures</strong> à la date de l&#8217;importation du fichier devront être sélectionnées.</p>
+<p>Seules les personnes <strong>majeures</strong> et n&#8217;ayant pas atteint l&#8217;âge de <strong>88 ans</strong> à la date de l&#8217;importation du fichier devront être sélectionnées.</p>
 </li>
 <li>
 <p>Prise en compte de la <strong>Contrainte-de-taille</strong>.</p>
@@ -688,11 +706,11 @@ qui remet en cause l&#8217;intégrité des données sur certains clients (dans l
 </ol>
 </div>
 <div class="paragraph">
-<p>Les clients positifs aux contraintes décrites ci-dessus seront <strong>traités à part des autres</strong>.</p>
+<p>Les clients positifs aux contraintes décrites ci-dessus seront <strong>traités à part des autres</strong> (à vous de décider comment et à défendre votre choix dans votre document d&#8217;analyse).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_masse_des_données_à_traiter">5.3. Masse des données à traiter</h3>
+<h3 id="_masse_des_données_à_traiter">5.4. Masse des données à traiter</h3>
 <div class="paragraph">
 <p>La masse d’information à traiter ( plusieurs milliers de clients par fichier CSV) n’aide pas à la mise au point au cours de la première phase de développement.</p>
 </div>
@@ -701,21 +719,6 @@ qui remet en cause l&#8217;intégrité des données sur certains clients (dans l
 </div>
 <div class="paragraph">
 <p>Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers <code>small-french-client.csv</code> et <code>small-german-client.csv</code>. Ces fichiers sont à créer (dans le cas général, ces fichiers n&#8217;ont pas le même nombre de lignes)</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_gestion_du_upload">5.4. Gestion du upload</h3>
-<div class="paragraph">
-<p>Les fichiers à traiter sont transmis par l&#8217;utilisateur gestionnaire.</p>
-</div>
-<div class="paragraph">
-<p>Un gestionnaire est un utilisateur ayant des <strong>droits spécifiques</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Votre rapport présentera vos travaux dans ce sens (compréhension de la gestion de l&#8217;upload dans le cadre d&#8217;une applications web multi-utilisateurs)</p>
-</div>
-<div class="paragraph">
-<p>Exemple de tuto sur ce thème : <a href="https://mkyong.com/spring-boot/spring-boot-file-upload-example/" class="bare">https://mkyong.com/spring-boot/spring-boot-file-upload-example/</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -737,8 +740,28 @@ Quelques pistes conceptuelles : <em>Niveau de confiance des données d’entrée
 </table>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_annexes_techniques">6. Annexes techniques</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_format_csv">5.6. Format CSV</h3>
+<h3 id="_gestion_du_upload">6.1. Gestion du upload</h3>
+<div class="paragraph">
+<p>Les fichiers à traiter sont transmis par l&#8217;utilisateur gestionnaire.</p>
+</div>
+<div class="paragraph">
+<p>Un gestionnaire est un utilisateur ayant des <strong>droits spécifiques</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Votre rapport présentera vos travaux dans ce sens (compréhension de la gestion de l&#8217;upload dans le cadre d&#8217;une applications web multi-utilisateurs)</p>
+</div>
+<div class="paragraph">
+<p>Exemple de tuto sur ce thème : <a href="https://mkyong.com/spring-boot/spring-boot-file-upload-example/" class="bare">https://mkyong.com/spring-boot/spring-boot-file-upload-example/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_format_csv">6.2. Format CSV</h3>
 <div class="paragraph">
 <p>Il existe plusieurs solutions pour que 2 systèmes puissent communiquer des données,
 indépendamment de leur implémentation interne spécifique (structure, encodage). La plupart du
@@ -791,7 +814,7 @@ C&#8217;est une source de confusion des utilisateurs lambda, confondant <code>CS
 </table>
 </div>
 <div class="sect3">
-<h4 id="_extrait_de_la_rfc_4180">5.6.1. Extrait de la RFC 4180</h4>
+<h4 id="_extrait_de_la_rfc_4180">6.2.1. Extrait de la RFC 4180</h4>
 <div class="paragraph">
 <p>(<a href="https://tools.ietf.org/html/rfc4180" class="bare">https://tools.ietf.org/html/rfc4180</a> )</p>
 </div>
@@ -888,7 +911,7 @@ another double quote.  For example:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bom">5.7. BOM</h3>
+<h3 id="_bom">6.3. BOM</h3>
 <div class="paragraph">
 <p>Parceque les fichiers CSV sont des fichiers "texte" (par opposition aux fichiers dits "binaire"), il est nécessaire de savoir que ce type de fichier peut intégrer une méta-donnée, nommée <code>BOM</code> dans les tout premiers octets.</p>
 </div>
@@ -980,7 +1003,7 @@ L&#8217;acceptabilité de BOM dépend des protocoles utilisés. À des fins d&#8
 </div>
 </div>
 <div class="sect2">
-<h3 id="_choisir_un_composant_dexploitation_csv">5.8. Choisir un composant d&#8217;exploitation CSV</h3>
+<h3 id="_choisir_un_composant_dexploitation_csv">6.4. Choisir un composant d&#8217;exploitation CSV</h3>
 <div class="paragraph">
 <p><strong>Exemple de critères</strong></p>
 </div>
@@ -1022,7 +1045,7 @@ Selon la taille des fichiers à manipuler, le critère de charge mémoire peut �
 <div id="footer">
 <div id="footer-text">
 Version v1.1<br>
-Last updated 2022-11-05 18:26:13 +0100
+Last updated 2022-11-14 18:22:51 +0100
 </div>
 </div>
 </body>

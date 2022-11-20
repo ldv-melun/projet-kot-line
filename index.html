@@ -454,7 +454,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_contexte">1. Contexte</a></li>
 <li><a href="#_première_partie_analyse">2. Première partie : Analyse</a></li>
 <li><a href="#_deuxième_partie_réalisation">3. Deuxième partie : Réalisation</a></li>
-<li><a href="#_consignes_de_livraison">4. Consignes de livraison</a></li>
+<li><a href="#_consignes_de_livraison">4. Consignes de livraison</a>
+<ul class="sectlevel2">
+<li><a href="#_evil_user_stories">4.1. Evil User Stories</a></li>
+</ul>
+</li>
 <li><a href="#_annexes_sur_les_data">5. Annexes sur les data</a>
 <ul class="sectlevel2">
 <li><a href="#_les_fichiers_csv_de_tests">5.1. Les fichiers CSV de tests</a></li>
@@ -465,7 +469,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#trois-contraintes">5.3. Contraintes de sélection des données client</a></li>
 <li><a href="#_masse_des_données_à_traiter">5.4. Masse des données à traiter</a></li>
-<li><a href="#_evil_user_stories">5.5. Evil User Stories</a></li>
 </ul>
 </li>
 <li><a href="#_annexes_techniques">6. Annexes techniques</a>
@@ -622,6 +625,37 @@ Les <em>Evil US</em> feront l&#8217;objet d&#8217;une évaluation à part, et le
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_evil_user_stories">4.1. Evil User Stories</h3>
+<div class="paragraph">
+<p><strong>On attend au moins deux <em>Evil User Stories</em> et leur contre-mesure</strong> : Prise en compte de scénarios à risque, formulés sous la forme simple d&#8217;un <em>Evil User Stories</em> et leur <strong>contre-mesure</strong> (réponse technique).  Voir exemple ici :  <a href="https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/" class="bare">https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/</a></p>
+</div>
+<div class="paragraph">
+<p>Quelques pistes conceptuelles :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Niveau de confiance des données d’entrée</em>,</p>
+</li>
+<li>
+<p>Stratégie de gestion de la <em>surface d’attaque</em> (réduction, gestion des dépendances),</p>
+</li>
+<li>
+<p><em>Défense en profondeur</em> (Voir <a href="https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur" class="bare">https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur</a>),</p>
+</li>
+<li>
+<p><em>principe du moindre privilège</em>,</p>
+</li>
+<li>
+<p><em>valeurs par défaut sécurisées</em> (en particulier les données de configuration),</p>
+</li>
+<li>
+<p>Mot de passe chiffrés en base de données et comment l’utiliser&#8230;&#8203; (un cours est prévu sur  <em>Spring Security</em>)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -719,25 +753,6 @@ qui remet en cause l&#8217;intégrité des données sur certains clients (dans l
 </div>
 <div class="paragraph">
 <p>Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers <code>small-french-client.csv</code> et <code>small-german-client.csv</code>. Ces fichiers sont à créer (dans le cas général, ces fichiers n&#8217;ont pas le même nombre de lignes)</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_evil_user_stories">5.5. Evil User Stories</h3>
-<div class="paragraph">
-<p><strong>On attend au moins deux <em>Evil User Stories</em> et leur contre-mesure</strong> : Prise en compte de scénarios à risque, formulés sous la forme simple d&#8217;un <em>Evil User Stories</em> et leur <strong>contre-mesure</strong> (réponse technique).  Voir exemple ici :  <a href="https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/" class="bare">https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/</a></p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-Les <em>Evil US</em> feront l&#8217;objet d&#8217;une <strong>évaluation à part</strong>, et leur dead-line est le <strong>XXX 23h59</strong>.<br>
-Quelques pistes conceptuelles : <em>Niveau de confiance des données d’entrée</em>, Stratégie de gestion de la <em>surface d’attaque</em> (réduction, gestion des dépendances), <em>Défense en profondeur</em> (Voir <a href="https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur" class="bare">https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur</a>), <em>principe du moindre privilège</em>, <em>valeurs par défaut sécurisées</em> (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser&#8230;&#8203;
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -996,9 +1011,11 @@ L&#8217;acceptabilité de BOM dépend des protocoles utilisés. À des fins d&#8
 <div class="paragraph">
 <p>Remarque, voici une commande pour connaître l&#8217;encodage de votre système (<em>big endian</em> ou <em>little endian</em> ?) :</p>
 </div>
-<div class="listingblock">
+<div class="exampleblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="python">python -c <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">import sys; print(sys.byteorder)</span><span style="color:#710">&quot;</span></span></code></pre>
+<div class="paragraph">
+<p>python -c "import sys; print(sys.byteorder)"</p>
+</div>
 </div>
 </div>
 </div>
@@ -1045,7 +1062,7 @@ Selon la taille des fichiers à manipuler, le critère de charge mémoire peut �
 <div id="footer">
 <div id="footer-text">
 Version v1.1<br>
-Last updated 2022-11-14 18:22:51 +0100
+Last updated 2022-11-20 09:52:38 +0100
 </div>
 </div>
 </body>

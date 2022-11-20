@@ -90,6 +90,14 @@ Votre rapport sera *daté*, comportera le nom de tous les collaborateurs de la t
 
 IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-line est le *Dimanche 18 décembre 23h59*.
 
+
+=== Evil User Stories
+*On attend au moins deux _Evil User Stories_ et leur contre-mesure* : Prise en compte de scénarios à risque, formulés sous la forme simple d'un _Evil User Stories_ et leur *contre-mesure* (réponse technique).  Voir exemple ici :  https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/
+
+IMPORTANT: Les _Evil US_ feront l'objet d'une *évaluation à part*, et leur dead-line est le *XXX 23h59*. +
+Quelques pistes conceptuelles : _Niveau de confiance des données d’entrée_, Stratégie de gestion de la _surface d’attaque_ (réduction, gestion des dépendances), _Défense en profondeur_ (Voir https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur), _principe du moindre privilège_, _valeurs par défaut sécurisées_ (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser...
+
+
 == Annexes sur les data
 
 === Les fichiers CSV de tests
@@ -148,12 +156,6 @@ La masse d’information à traiter ( plusieurs milliers de clients par fichier 
 Il est alors souhaitable de constituer des données de tests afin de faciliter, *dans un premier temps*, la mise au point du code, les tests.
 
 Par exemple travailler avec une vingtaine de clients suffit pour commencer. Par convention, vous nommerez ces fichiers `small-french-client.csv` et `small-german-client.csv`. Ces fichiers sont à créer (dans le cas général, ces fichiers n'ont pas le même nombre de lignes)
-
-=== Evil User Stories
-*On attend au moins deux _Evil User Stories_ et leur contre-mesure* : Prise en compte de scénarios à risque, formulés sous la forme simple d'un _Evil User Stories_ et leur *contre-mesure* (réponse technique).  Voir exemple ici :  https://www.riskinsight-wavestone.com/2019/12/cybersecurity-transformation-agile/
-
-IMPORTANT: Les _Evil US_ feront l'objet d'une *évaluation à part*, et leur dead-line est le *XXX 23h59*. +
-Quelques pistes conceptuelles : _Niveau de confiance des données d’entrée_, Stratégie de gestion de la _surface d’attaque_ (réduction, gestion des dépendances), _Défense en profondeur_ (Voir https://fr.wikipedia.org/wiki/D%C3%A9fense_en_profondeur), _principe du moindre privilège_, _valeurs par défaut sécurisées_ (en particulier les données de configuration), Mot de passe chiffrés en base de données et comment l’utiliser...
 
 == Annexes techniques
 

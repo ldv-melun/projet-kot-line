@@ -311,9 +311,10 @@ TIP: L'acceptabilité de BOM dépend des protocoles utilisés. À des fins d'int
 
 Remarque, voici une commande pour connaître l'encodage de votre système (_big endian_ ou _little endian_ ?) :
 
-```python
+[source, bash]
+====
 python -c "import sys; print(sys.byteorder)"
-```
+====
 
 === Choisir un composant d'exploitation CSV
 

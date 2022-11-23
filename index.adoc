@@ -66,9 +66,11 @@ Votre *document d'analyse* (format asciidoc, puis version pdf) portera sur les p
 * Définition du domaine métier représenté par un diagramme de classes des entités métier (classes `entity`).
 * Choix (et argumentation) de la librairie logicielle vous avez retenue pour lire un document CSV, à partir de cet article : https://www.baeldung.com/kotlin/csv-files[]
 * La façon dont vous comptez implémenter les 3 contraintes de sélection
-* Présentation de la stratégie retenue par votre équipe concernant la gestion des données à problème.
+* Présentation de la stratégie retenue par votre équipe concernant la gestion des données ne passant pas les filtres basés sur les contraintes.
 * La façon dont vous envisagez gérer le cas où l'utilisateur soumet les mêmes données en téléchargement, dans le but d'éviter d'inscrire plusieurs fois les mêmes données dans la base de données.
 * Identification de risques d'utilisateurs malveillants (_Evil User Story_ ou _Abuser Story_)
+
+Analyse à livrer, au plus tard, sous huitaine (*dimanche 27 novembre 2022 23h59*)
 
 == Deuxième partie : Réalisation
 
@@ -80,7 +82,7 @@ Vous mettrez au point une série de tests unitaires qui vérifient que vos algor
 
 == Consignes de livraison
 
-La date de livraison est : *Dimanche 11 décembre 2022 - 23h59*
+La date de livraison de votre application et rapport est : *Dimanche 11 décembre 2022 - 23h59*
 
 Vous communiquerez, par un des membres du groupe - les autres en CC -, une version *pdf* de votre rapport README.
 

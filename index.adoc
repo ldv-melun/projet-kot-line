@@ -65,7 +65,7 @@ Votre *document d'analyse* (format asciidoc, puis version pdf) portera sur les p
 
 a. Définition du domaine métier représenté par un diagramme de classes des entités métier (classes `entity`).
 a. Choix (et argumentation) de la librairie logicielle vous avez retenue pour lire un document CSV, à partir de cet article : https://www.baeldung.com/kotlin/csv-files[]
-a. La façon dont vous comptez implémenter les 3 contraintes de sélection
+a. La façon dont vous comptez implémenter les 3 contraintes de sélection (interface des fonctions avec KDoc)
 a. Présentation de la stratégie retenue par votre équipe concernant la gestion des données ne passant pas les filtres basés sur les contraintes.
 a. La façon dont vous envisagez gérer le cas où l'utilisateur soumet les mêmes données en téléchargement, dans le but d'éviter d'inscrire plusieurs fois les mêmes données dans la base de données.
 a. Identification de risques d'utilisateurs malveillants (sans leur contre-mesure) (_Evil User Story_ ou _Abuser Story_)

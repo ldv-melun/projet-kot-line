@@ -82,7 +82,7 @@ Vous mettrez au point une série de tests unitaires qui vérifient que vos algor
 
 == Consignes de livraison
 
-La date de livraison de votre application et rapport est : *Dimanche 11 décembre 2022 - 23h59*
+La date de livraison de votre application et rapport est : *Dimanche 18 décembre 2022 - 23h59*
 
 Vous communiquerez, par un des membres du groupe - les autres en CC -, une version *pdf* de votre rapport README.
 
@@ -90,7 +90,7 @@ Le fichier sera constitué du nom de la team.
 
 Votre rapport sera *daté*, comportera le nom de tous les collaborateurs de la team ainsi qu'un lien vers l'énoncé de la mission (ce doc) et un autre vers votre projet hébergé sur un serveur git. Rappel, votre rapport *est* le README de votre projet.
 
-IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-line est le *Dimanche 18 décembre 23h59*.
+IMPORTANT: Les _Evil US_ feront l'objet d'une évaluation à part, et leur dead-line est le *après les fêtes*.
 
 
 === Evil User Stories

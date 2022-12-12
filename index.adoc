@@ -68,7 +68,7 @@ a. Choix (et argumentation) de la librairie logicielle vous avez retenue pour li
 a. La façon dont vous comptez implémenter les 3 contraintes de sélection (interface des fonctions avec KDoc)
 a. Présentation de la stratégie retenue par votre équipe concernant la gestion des données ne passant pas les filtres basés sur les contraintes.
 a. La façon dont vous envisagez gérer le cas où l'utilisateur soumet les mêmes données en téléchargement, dans le but d'éviter d'inscrire plusieurs fois les mêmes données dans la base de données.
-a. Identification de risques d'utilisateurs malveillants (sans leur contre-mesure) (_Evil User Story_ ou _Abuser Story_)
+a. Identification d'événements redoutés et leurs impacts.  Concerne des utilisateurs malveillants (sans leur contre-mesure) (_Evil User Story_ ou _Abuser Story_)
 
 Analyse à livrer, au plus tard, sous huitaine (*dimanche 27 novembre 2022 23h59*)
 
@@ -327,6 +327,8 @@ python -c "import sys; print(sys.byteorder)"
 
 === Choisir un composant d'exploitation CSV
 
+Étudier cet article : https://www.baeldung.com/kotlin/csv-files[Read and Write CSV Files With Kotlin]
+
 *Exemple de critères*
 
 - Charge mémoire
@@ -336,3 +338,26 @@ python -c "import sys; print(sys.byteorder)"
 - Licence open source
 
 TIP: Selon la taille des fichiers à manipuler, le critère de charge mémoire peut être déterminant.
+
+=== Tableau d'événements redoutés
+
+[cols="1,4,4,2", options="header"]
+.Exemple d'un événement redouté
+|===
+|N°
+|Événement redouté
+|Impact métier
+|Gravité
+
+|1
+|Un attaquant "devine" un mot de passe.
+|La fiabilité des commandes en cours  est gravement compromise.
+|++
+
+|2
+|
+|
+|
+|===
+
++ : gravité modérée, &nbsp;&nbsp;&nbsp;&nbsp;++ : gravité très élevée

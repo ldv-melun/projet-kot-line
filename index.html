@@ -481,6 +481,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_bom">6.3. BOM</a></li>
 <li><a href="#_choisir_un_composant_dexploitation_csv">6.4. Choisir un composant d&#8217;exploitation CSV</a></li>
+<li><a href="#_tableau_dévénements_redoutés">6.5. Tableau d&#8217;événements redoutés</a></li>
 </ul>
 </li>
 </ul>
@@ -578,7 +579,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>La façon dont vous envisagez gérer le cas où l&#8217;utilisateur soumet les mêmes données en téléchargement, dans le but d&#8217;éviter d&#8217;inscrire plusieurs fois les mêmes données dans la base de données.</p>
 </li>
 <li>
-<p>Identification de risques d&#8217;utilisateurs malveillants (sans leur contre-mesure) (<em>Evil User Story</em> ou <em>Abuser Story</em>)</p>
+<p>Identification d&#8217;événements redoutés et leurs impacts.  Concerne des utilisateurs malveillants (sans leur contre-mesure) (<em>Evil User Story</em> ou <em>Abuser Story</em>)</p>
 </li>
 </ol>
 </div>
@@ -1025,6 +1026,9 @@ L&#8217;acceptabilité de BOM dépend des protocoles utilisés. À des fins d&#8
 <div class="sect2">
 <h3 id="_choisir_un_composant_dexploitation_csv">6.4. Choisir un composant d&#8217;exploitation CSV</h3>
 <div class="paragraph">
+<p>Étudier cet article : <a href="https://www.baeldung.com/kotlin/csv-files">Read and Write CSV Files With Kotlin</a></p>
+</div>
+<div class="paragraph">
 <p><strong>Exemple de critères</strong></p>
 </div>
 <div class="ulist">
@@ -1059,13 +1063,50 @@ Selon la taille des fichiers à manipuler, le critère de charge mémoire peut �
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_tableau_dévénements_redoutés">6.5. Tableau d&#8217;événements redoutés</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Exemple d&#8217;un événement redouté</caption>
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 36.3636%;">
+<col style="width: 36.3636%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">N°</th>
+<th class="tableblock halign-left valign-top">Événement redouté</th>
+<th class="tableblock halign-left valign-top">Impact métier</th>
+<th class="tableblock halign-left valign-top">Gravité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un attaquant "devine" un mot de passe.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La fiabilité des commandes en cours  est gravement compromise.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">++</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>+ : gravité modérée, &nbsp;&nbsp;&nbsp;&nbsp;++ : gravité très élevée</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version v1.1<br>
-Last updated 2022-11-29 11:44:58 +0100
+Last updated 2022-12-12 14:16:29 +0100
 </div>
 </div>
 </body>
